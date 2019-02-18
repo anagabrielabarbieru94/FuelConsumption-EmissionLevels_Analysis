@@ -26,7 +26,7 @@ for root, dirs, files in os.walk("../../dissertation_datasets", topdown=False):
             df = pd.DataFrame()
             idx = 0
             for column in columns_list:
-                match = [x for x in file_columns if column in x]
+                match = [x for x in file_columns if column.lower() in x.lower()]
                 if len(match) != 0:
                     data = data_frame.get(match[0])
                     df.insert(loc = idx, column = column, value=data)
