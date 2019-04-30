@@ -11,10 +11,11 @@ columns_list = ['Manufacturer', 'Model', 'Description', 'AorM', 'Transmission', 
                    'Particulates', 'Date of change', 'Fuel Cost 12000 Miles', 'Tax band', 'Standard 12 months',
                    'Standard 6 Months', '1st year 12 months', '1st year 6 months']
 
+file_name = "../../dissertation_datasets/merged_dataset.csv"
 
 merge_df = pd.DataFrame(columns=columns_list)
 print(merge_df)
-print(os.getcwd())
+
 for root, dirs, files in os.walk("../../dissertation_datasets", topdown=False):
     for name in files:
         if (name.endswith(".csv")) and ("merged_dataset.csv" not in name):
@@ -34,7 +35,6 @@ for root, dirs, files in os.walk("../../dissertation_datasets", topdown=False):
                     df.insert(loc = idx, column = column, value=None)
                 idx += 1
 
-            df.round(3)
             if count_files == 0:
                 merge_df = df
             else:
@@ -42,6 +42,6 @@ for root, dirs, files in os.walk("../../dissertation_datasets", topdown=False):
 
             count_files += 1
 
-print(merge_df.shape)
-merge_df.to_csv("../../dissertation_datasets/merged_dataset.csv")
+print(merge_df)
+merge_df.to_csv(file_name, index=False)
 
