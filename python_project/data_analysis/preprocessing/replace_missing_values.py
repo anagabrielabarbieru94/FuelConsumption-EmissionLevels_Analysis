@@ -8,9 +8,10 @@ for column in data_frame:
     if data_frame[column].dtype == 'object':
         data_frame[column].fillna('not applicable', inplace=True)
     else:
-        med = data_frame.groupby(['Manufacturer'])[column].transform('median')
-
+        med = data_frame.groupby(['Euro standard'])[column].transform('median')
         data_frame[column].fillna(med, inplace=True)
     print(data_frame.get(column))
 
+with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+    print(data_frame)
 data_frame.to_csv(file_name, index=False)

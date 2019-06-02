@@ -42,6 +42,5 @@ for root, dirs, files in os.walk("../../dissertation_datasets", topdown=False):
 
             count_files += 1
 
-print(merge_df)
 merge_df.to_csv(file_name, index=False)
 
