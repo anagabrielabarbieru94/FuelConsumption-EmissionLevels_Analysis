@@ -1,8 +1,10 @@
 package com.example.fiifuel
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.MotionEvent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 
@@ -42,6 +44,8 @@ class FullscreenActivity : AppCompatActivity() {
         if (AUTO_HIDE) {
             delayedHide(AUTO_HIDE_DELAY_MILLIS)
         }
+        val intent = Intent(this, ConfigActivity::class.java);
+        startActivity(intent);
         false
     }
 
@@ -54,12 +58,12 @@ class FullscreenActivity : AppCompatActivity() {
         mVisible = true
 
         // Set up the user interaction to manually show or hide the system UI.
-        fullscreen_content.setOnClickListener { toggle() }
+        fullscreen_layout.setOnClickListener { toggle() }
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        fullscreen_content.setOnTouchListener(mDelayHideTouchListener)
+        fullscreen_layout.setOnTouchListener(mDelayHideTouchListener)
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
